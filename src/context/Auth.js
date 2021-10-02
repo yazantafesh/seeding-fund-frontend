@@ -25,6 +25,10 @@ export default function Auth(props) {
     validateToken(token);
   }, []);
 
+	useEffect(() => {
+		console.log('changed')
+	}, [user])
+
   function validateToken(token) {
     try {
       const user = jwt.decode(token);
@@ -125,6 +129,18 @@ export default function Auth(props) {
 		setUser(response.body);
 	}
 
+	async function updateProjectStatus(projectName, email, status) {
+		const token = cookie.load('auth');
+		let response = await superagent.put(`${API}/update`, {
+			name: projectName,
+			email: email,
+			status: status
+		})
+		.set('authorization', `Bearer ${token}`);
+		let newData = await getProjects(user.email, token);
+		setUser(newData);
+	}
+
   const state = {
 		loggedIn,
 		user,
@@ -134,7 +150,8 @@ export default function Auth(props) {
 		logout,
 		setUser,
 		createProject,
-		deleteProject
+		deleteProject,
+		updateProjectStatus
 	};
 
   return (

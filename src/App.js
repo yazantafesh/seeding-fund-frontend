@@ -10,6 +10,7 @@ import {
 import { AuthContext } from './context/Auth';
 import Projects from './components/projectOwnerPage/ProjectsPage';
 import Header from './components/header/Header';
+import AdminPage from './components/adminPage/AdminPage';
 
 export default function App() {
   const auth = useContext(AuthContext);
@@ -24,8 +25,11 @@ export default function App() {
             !auth.loggedIn &&
             <LoginForm />
           }
-          {auth.loggedIn && (
+          {auth.loggedIn && (auth.user.role === 'projectOwner') && (
             <Redirect to="/projects" />
+          )}
+          {auth.loggedIn && (auth.user.role === 'admin') && (
+            <Redirect to="/admin" />
           )}
         </Route>
         <Route exact path="/signup">
@@ -35,7 +39,12 @@ export default function App() {
           }
         </Route>
         <Route exact path="/projects">
-          <Projects />
+        {auth.loggedIn && (auth.user.role === 'projectOwner') && (
+          <Projects />)}
+        </Route>
+        <Route exact path="/admin">
+        {auth.loggedIn && (auth.user.role === 'admin') && (
+          <AdminPage/>)}
         </Route>
       </Switch>
     </Router>

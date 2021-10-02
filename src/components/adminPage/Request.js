@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useContext } from 'react';
 const {AuthContext} = require('../../context/Auth');
 
-export default function Project(props) {
+export default function Request(props) {
   const auth = useContext(AuthContext);
   return (
     <Box sx={{ minWidth: 275 }}>
@@ -18,26 +18,30 @@ export default function Project(props) {
             
           </Typography>
           <Typography variant="h5" component="div">
-          {props.project.name}
+          {props.request.name}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Sector: {props.project.sector}
+          Sector: {props.request.sector}
           </Typography>
           <Typography variant="body2">
-          {props.project.description}
+          {props.request.description}
           </Typography>
           <Typography variant="body2">
-          Required Funding: ${props.project.requiredFunding}
+          Required Funding: ${props.request.requiredFunding}
           </Typography>
           <Typography variant="body2">
-          {props.project.urgency}
+          {props.request.urgency}
           </Typography>
           <Typography variant="body2">
-          Status: {props.project.status}
+          Owner's E-mail: {props.request.email}
+          </Typography>
+          <Typography variant="body2">
+          Status: {props.request.status}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={()=>{auth.deleteProject(props.project.name)}}>Delete</Button>
+          <Button size="small" onClick={()=>{auth.updateProjectStatus(props.request.name, props.request.email, 'Accepted')}}>Accept</Button>
+          <Button size="small" onClick={()=>{auth.updateProjectStatus(props.request.name, props.request.email, 'Declined')}}>Decline</Button>
         </CardActions>
       </Card>
     </Box>
