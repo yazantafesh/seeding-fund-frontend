@@ -8,7 +8,7 @@ This project is a web development assignment for InfoGraph
 
 * A company called “seedingfund” that funding projects and looking to create projects management system. Users will be able to register, login, send a funding request with their project details and check the status of the funding request of the project. Admins should login and see all funding requests.
 
-[Deployment]()   
+[Deployment](https://seeding-fund.netlify.app/)   
 [Backend repo](https://github.com/yazantafesh/seeding-fund-backend)   
 
 ![Admin Page](./src/utilities/demo1.jpg)
