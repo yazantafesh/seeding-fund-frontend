@@ -10,49 +10,49 @@ export const AuthContext = createContext();
 
 export default function Auth(props) {
 
-  const [user, setUser] = useState({
-		email:'',
-		password:'',
-		firstName:'',
-		lastName:'',
-		role:'',
-		projects:[]
+	const [user, setUser] = useState({
+		email: '',
+		password: '',
+		firstName: '',
+		lastName: '',
+		role: '',
+		projects: []
 	});
-  const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = cookie.load('auth');
-    validateToken(token);
-  }, []);
+	useEffect(() => {
+		const token = cookie.load('auth');
+		validateToken(token);
+	}, []);
 
 	useEffect(() => {
 		console.log('changed')
 	}, [user])
 
-  function validateToken(token) {
-    try {
-      const user = jwt.decode(token);
-      if (user) setLoginState(true, token, user);
-    } catch (error) {
-      setLoginState(false, null, {});
-      console.log(`Token Validation Error ${error.message}`);
-    }
-  }
+	function validateToken(token) {
+		try {
+			const user = jwt.decode(token);
+			if (user) setLoginState(true, token, user);
+		} catch (error) {
+			setLoginState(false, null, {});
+			console.log(`Token Validation Error ${error.message}`);
+		}
+	}
 
-  async function setLoginState(loggedIn, token, user) {
+	async function setLoginState(loggedIn, token, user) {
 		cookie.save('auth', token);
 		let userData = await getProjects(user.email, token);
 		setUser(userData);
 		setLoggedIn(loggedIn);
 	}
 
-  function setLogoutState(loggedIn, user) {
+	function setLogoutState(loggedIn, user) {
 		cookie.save('auth', null);
-		setUser( user );
+		setUser(user);
 		setLoggedIn(loggedIn);
 	}
 
-  async function login(email, password) {
+	async function login(email, password) {
 		try {
 			const response = await superagent
 				.post(`${API}/sign/in`)
@@ -64,15 +64,15 @@ export default function Auth(props) {
 		}
 	}
 
-  async function signup(email, password, firstName, lastName, role) {
+	async function signup(email, password, firstName, lastName, role) {
 		try {
 			const response = await superagent.post(`${API}/sign/up`, {
 				email,
 				password,
-        firstName,
-        lastName,
+				firstName,
+				lastName,
 				role,
-        projects:[]
+				projects: []
 			});
 
 			validateToken(response.body.token);
@@ -81,7 +81,7 @@ export default function Auth(props) {
 		}
 	}
 
-	async function createProject( name, description, sector, requiredFunding, urgency) {
+	async function createProject(name, description, sector, requiredFunding, urgency) {
 		try {
 			const token = cookie.load('auth');
 			const response = await superagent
@@ -94,29 +94,37 @@ export default function Auth(props) {
 					email: user.email
 				})
 				.set('authorization', `Bearer ${token}`);
-				console.log('hello',response.body)
-				setUser(response.body)
-			} catch (error) {
-				console.error('Authorization Error', error.message);
+			console.log('hello', response.body)
+			setUser(response.body)
+		} catch (error) {
+			console.error('Authorization Error', error.message);
 
 		}
 	}
 
-  function logout() {
+	function logout() {
 		setLogoutState(false, {
-			email:'',
-			password:'',
-			firstName:'',
-			lastName:'',
-			role:'',
-			projects:[]
+			email: '',
+			password: '',
+			firstName: '',
+			lastName: '',
+			role: '',
+			projects: []
 		});
 	}
 
 	async function getProjects(email, token) {
 		const response = await superagent.get(`${API}/read?email=${email}`)
-		.set('authorization', `Bearer ${token}`);
-		return response.body;
+			.set('authorization', `Bearer ${token}`);
+
+		setProjectStatus(response.body.projectStatus);
+		return {
+			email: response.body.email,
+			firstName: response.body.firstName,
+			lastName: response.body.lastName,
+			role: response.body.role,
+			projects: response.body.projects
+		};
 	}
 
 	async function deleteProject(projectName) {
@@ -125,7 +133,7 @@ export default function Auth(props) {
 			name: projectName,
 			email: user.email
 		})
-		.set('authorization', `Bearer ${token}`);
+			.set('authorization', `Bearer ${token}`);
 		setUser(response.body);
 	}
 
@@ -136,27 +144,34 @@ export default function Auth(props) {
 			email: email,
 			status: status
 		})
-		.set('authorization', `Bearer ${token}`);
+			.set('authorization', `Bearer ${token}`);
 		let newData = await getProjects(user.email, token);
 		setUser(newData);
 	}
 
-  const state = {
+	const [projectStatus, setProjectStatus] = useState({
+		Accepted: 0,
+		Declined: 0,
+		Pending: 0
+	});
+
+	const state = {
 		loggedIn,
 		user,
 		setLoggedIn,
 		login,
-    signup,
+		signup,
 		logout,
 		setUser,
 		createProject,
 		deleteProject,
-		updateProjectStatus
+		updateProjectStatus,
+		projectStatus
 	};
 
-  return (
-    <AuthContext.Provider value={state}>
-      {props.children}
-    </AuthContext.Provider>
-  )
+	return (
+		<AuthContext.Provider value={state}>
+			{props.children}
+		</AuthContext.Provider>
+	)
 }
