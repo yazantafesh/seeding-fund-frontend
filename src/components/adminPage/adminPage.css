@@ -1,6 +1,6 @@
 #adminContainer {
   margin-top: 100px;
-  margin-left: 10%;
+  margin-left: 13%;
   margin-right: 10%;
 }
 
@@ -10,6 +10,76 @@
 }
 
 #chartContainer {
+  margin-left: 38% !important;
+  border: 2px solid #3DB0D0;
+  padding-left: 4.5%;
+  padding-right: 5%;
+  padding-bottom: 2%;
+  border-radius: 10px;
+  position: fixed;
+  width: 28%;
+  margin-top: 70px;
+  background-color: white;
+}
+
+#chart {
+  margin-left: 150px;
+}
+
+.chartTitle {
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  color: rgb(42,44,56);
+}
+
+.title {
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  margin-top: 20px !important;
   display: inline-block;
-  margin-left: 150px !important;
+  margin-left: 3.5%;
+  position: fixed;
+  color: #3DB0D0;
+}
+
+.requestsTitle {
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  color: #3DB0D0;
+}
+
+#card {
+  border-radius: 10px !important;
+  margin-bottom: 10px;
+  border: 2px solid #3DB0D0;
+}
+
+.urgent {
+  color: rgb(209, 37, 37) !important;
+}
+
+.pending {
+  color: rgba(255, 206, 86, 1) !important;
+}
+
+.accepted {
+  color: rgba(75, 192, 192, 1) !important;
+}
+
+.declined {
+  color: rgba(255, 99, 132, 1) !important;
+}
+
+.cardButton {
+  color: #3DB0D0 !important;
+  border-color: #3DB0D0 !important;
+  margin-top: 150px !important;
+}
+
+.cardContent {
+  float: left;
+  width: 55%;
 }

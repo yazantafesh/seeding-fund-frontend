@@ -9,6 +9,9 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import { AuthContext } from '../../context/Auth';
 import { Redirect } from 'react-router-dom';
+import './registration.css';
+
+//This is the form that handles the registration
 
 export default function RegForm() {
   const [email, setEmail] = useState('');
@@ -18,6 +21,8 @@ export default function RegForm() {
   const [role, setRole] = useState('');
   const [signedUp, setSignedUp] = useState(false)
   const auth = useContext(AuthContext);
+
+  //Handling data change in the form
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -39,6 +44,8 @@ export default function RegForm() {
     setRole(event.target.value);
   };
 
+  //Submitting the new user data and calling the signup function from the context
+
   const handleSubmit = (event) => {
     event.preventDefault();
     auth.signup(email, password, firstName, lastName, role);
@@ -46,20 +53,24 @@ export default function RegForm() {
   }
 
   return (
-    <div style={{ marginTop: '100px' }}>
+    <div className="mainContainer">
+    <div className="signupContainer">
       <Box
         component="form"
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
         }}
-        noValidate
-        autoComplete="off"
         onSubmit={(e) => { handleSubmit(e) }}
       >
-        <TextField label="Email" variant="standard" onChange={handleEmailChange} />
-        <TextField label="Password" variant="standard" onChange={handlePasswordChange} />
-        <TextField label="First Name" variant="standard" onChange={handlefirstNameChange} />
-        <TextField label="Last Name" variant="standard" onChange={handlelastNameChange} />
+        <h3 className="signupTitle">Signup </h3>
+        <TextField label="Email" variant="standard" onChange={handleEmailChange} required />
+        <br/>
+        <TextField label="Password" type="password" variant="standard" onChange={handlePasswordChange} required />
+        <br/>
+        <TextField label="First Name" variant="standard" onChange={handlefirstNameChange} required />
+        <br/>
+        <TextField label="Last Name" variant="standard" onChange={handlelastNameChange} required />
+        <br/>
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-standard-label">Role</InputLabel>
           <Select
@@ -68,16 +79,20 @@ export default function RegForm() {
             value={role}
             onChange={handleRoleChange}
             label="Role"
+            required
           >
             <MenuItem value='projectOwner'>Project Owner</MenuItem>
             <MenuItem value='admin'>Admin</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained" type="submit" >Submit</Button>
+        <br/>
+        <br/>
+        <Button className="signupButton" variant="contained" type="submit" >Signup</Button>
       </Box>
       {signedUp && (
         <Redirect to="/" />
       )}
+    </div>
     </div>
   );
 }

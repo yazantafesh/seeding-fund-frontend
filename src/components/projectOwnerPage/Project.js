@@ -8,12 +8,14 @@ import Typography from '@mui/material/Typography';
 import { useContext } from 'react';
 const {AuthContext} = require('../../context/Auth');
 
+//Rendering a card containing each project's data
+
 export default function Project(props) {
   const auth = useContext(AuthContext);
   return (
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">
-        <CardContent>
+      <Card variant="outlined" id="card">
+        <CardContent className="cardContent">
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             
           </Typography>
@@ -21,24 +23,27 @@ export default function Project(props) {
           {props.project.name}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Sector: {props.project.sector}
+          <b>Sector: </b>{props.project.sector}
           </Typography>
           <Typography variant="body2">
-          {props.project.description}
+          <b>Description: </b>{props.project.description}
           </Typography>
           <Typography variant="body2">
-          Required Funding: ${props.project.requiredFunding}
+          <b>Required Funding:</b> ${props.project.requiredFunding}
           </Typography>
-          <Typography variant="body2">
-          {props.project.urgency}
+          <Typography variant="body2" >
+            <b>Status: </b>
+            <span className={props.project.status == 'Pending' ? 'pending' : props.project.status == 'Accepted' ? 'accepted' : 'declined'}>{props.project.status}</span>
           </Typography>
-          <Typography variant="body2">
-          Status: {props.project.status}
+          <Typography variant="body2" className={props.project.urgency == 'Urgent' ? 'urgent' : 'notUrgent'}>
+            {props.project.urgency}
           </Typography>
         </CardContent>
+        <div className="cardButtonContainer">
         <CardActions>
-          <Button size="small" onClick={()=>{auth.deleteProject(props.project.name)}}>Delete</Button>
+          <Button className="cardPOwnerButton" variant="outlined" size="small" onClick={()=>{auth.deleteProject(props.project.name)}}>Delete</Button>
         </CardActions>
+        </div>
       </Card>
     </Box>
   );
