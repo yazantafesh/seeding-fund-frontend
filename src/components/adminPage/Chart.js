@@ -26,14 +26,15 @@ const Chart = (props) => {
   };
 
   return (
-    <div id="chartContainer">
-      <div className='header'>
-        <h1 className='title'>Projects</h1>
+    <>
+      <h3 className='title'>Projects Data</h3>
+      <div id="chartContainer">
+        <h3 className='chartTitle'> Project Status Chart</h3>
+        <div id="chart">
+          <Pie data={data} />
+        </div>
       </div>
-      <div id="chart">
-        <Pie data={data} />
-      </div>
-    </div>
+    </>
   )
 };
 

@@ -1,13 +1,15 @@
 import React, {useContext} from 'react';
 import Project from './Project';
+import './projectOwner.css';
 const {AuthContext} = require('../../context/Auth');
+
+//Maping over projects received from the backend
 
 export default function AllProjects() {
   const auth = useContext(AuthContext);
-  console.log(auth.user)
   return (
-    <div>
-      <h2>Project Requests</h2>
+    <div id="requestsContainer">
+      <h3 className='requestsTitle'>Project Requests</h3>
       {
         auth.user.projects.map((project)=>{
           return(

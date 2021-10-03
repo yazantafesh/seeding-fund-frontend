@@ -15,7 +15,6 @@
 
 .active-links {
   color: #3DB0D0 !important;
-  
 }
 
 #link {
@@ -25,4 +24,8 @@
 
 .menu {
   margin-right: 10% !important;
+}
+
+#appBar {
+background-color: white;
 }

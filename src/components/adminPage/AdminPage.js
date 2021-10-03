@@ -4,6 +4,8 @@ import Chart from './Chart';
 import { AuthContext } from '../../context/Auth';
 import './adminPage.css';
 
+//This is the main admin page where all child components are called
+
 export default function AdminPage() {
   const auth = useContext(AuthContext);
   return (

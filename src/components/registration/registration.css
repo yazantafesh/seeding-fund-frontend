@@ -1,0 +1,33 @@
+.signupContainer {
+  margin-top: 100px;
+  border: solid 2px #3DB0D0;
+  width: 20%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 1%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.mainContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  margin-top: 100px;
+}
+
+.signupTitle {
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  color: #3DB0D0;
+}
+
+.signupButton {
+  background-color:#3DB0D0 !important ;
+}

@@ -11,12 +11,13 @@ import { AuthContext } from './context/Auth';
 import Projects from './components/projectOwnerPage/ProjectsPage';
 import Header from './components/header/Header';
 import AdminPage from './components/adminPage/AdminPage';
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 
 export default function App() {
   const auth = useContext(AuthContext);
 
   return (
-
     <Router>
       <Header />
       <Switch>
@@ -39,16 +40,16 @@ export default function App() {
           }
         </Route>
         <Route exact path="/projects">
-        {auth.loggedIn && (auth.user.role === 'projectOwner') && (
-          <Projects />)}
+          {auth.loggedIn && (auth.user.role === 'projectOwner') && (
+            <Projects />)}
         </Route>
         <Route exact path="/admin">
-        {auth.loggedIn && (auth.user.role === 'admin') && (
-          <AdminPage/>)}
+          {auth.loggedIn && (auth.user.role === 'admin') && (
+            <AdminPage />)}
         </Route>
       </Switch>
+      <NotificationContainer />
     </Router>
-
   )
 }
 

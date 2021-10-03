@@ -1,0 +1,87 @@
+#ownerContainer {
+  margin-top: 100px;
+  margin-left: 13%;
+  margin-right: 10%;
+}
+
+#requestsContainer {
+  width:45%;
+  float: left;
+}
+
+.requestsTitle {
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  color: #3DB0D0;
+}
+
+#card {
+  border-radius: 10px !important;
+  margin-bottom: 10px;
+  border: solid 2px #3DB0D0;
+}
+
+.cardContent {
+  float: left;
+  width: 55%;
+}
+
+
+.urgent {
+  color: rgb(209, 37, 37) !important;
+}
+
+.pending {
+  color: rgba(255, 206, 86, 1) !important;
+}
+
+.accepted {
+  color: rgba(75, 192, 192, 1) !important;
+}
+
+.declined {
+  color: rgba(255, 99, 132, 1) !important;
+}
+
+.cardPOwnerButton {
+  color: #3DB0D0 !important;
+  border-color: #3DB0D0 !important;
+  margin-top: 130px !important;
+  margin-left: 80px !important;
+}
+
+
+#formContainer {
+  margin-left: 38% !important;
+  border: solid 2px #3DB0D0;
+  padding-left: 4.5%;
+  padding-right: 5%;
+  padding-bottom: 2%;
+  border-radius: 10px;
+  position: fixed;
+  width: 23%;
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+}
+.title {
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  margin-top: 20px !important;
+  display: inline-block;
+  margin-left: 3.5%;
+  position: fixed;
+  color: #3DB0D0;
+}
+
+.submitButton {
+  background-color:#3DB0D0 !important ;
+}
+
+.checkbox {
+  color: #3DB0D0 !important;
+}
