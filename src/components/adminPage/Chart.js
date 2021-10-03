@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import './adminPage.css';
 
 const Chart = (props) => {
 
@@ -25,14 +26,14 @@ const Chart = (props) => {
   };
 
   return (
-    <>
+    <div id="chartContainer">
       <div className='header'>
         <h1 className='title'>Projects</h1>
       </div>
-      <div style={{width:'300px', height:'300px'}}>
+      <div id="chart">
         <Pie data={data} />
       </div>
-    </>
+    </div>
   )
 };
 

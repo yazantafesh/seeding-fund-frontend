@@ -1,0 +1,28 @@
+#logo {
+  margin-left: 20%;
+}
+
+.authLinks {
+  text-decoration: none;
+  color: rgb(42,44,56);
+  margin-right: 1%;
+}
+
+.links {
+  color: #8996A2 !important;
+  margin-right: 1% !important;
+}
+
+.active-links {
+  color: #3DB0D0 !important;
+  
+}
+
+#link {
+  text-decoration: none !important;
+  margin-right: 1% !important;
+}
+
+.menu {
+  margin-right: 10% !important;
+}
